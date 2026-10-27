@@ -68,15 +68,15 @@ Os módulos abaixo estão implementados. Os estados de produção confirmados es
 
 ```mermaid
 flowchart LR
-    U[Usuário] --> N[Nginx]
-    N --> F[FastAPI<br/>Jinja2 + interface V3]
-    F --> P[(PostgreSQL)]
-    F --> R[(Redis)]
-    R --> C[Celery<br/>tarefas agendadas]
+    U["Usuário"] --> N["Nginx"]
+    N --> F["FastAPI + Jinja2 (interface V3)"]
+    F --> P[("PostgreSQL")]
+    F --> R[("Redis")]
+    R --> C["Celery: tarefas agendadas"]
     C --> P
-    F --> A[Asaas]
-    F --> W[WhatsApp]
-    F -.homologação.-> I[NFS-e com IA]
+    F --> A["Asaas"]
+    F --> W["WhatsApp"]
+    F -.->|"em homologação"| I["NFS-e com IA"]
 ```
 
 Monólito modular em três camadas: rotas finas (validação e autorização), regras de negócio e acesso a dados, e um cliente isolado por serviço externo. As mesmas regras atendem requisições HTTP e tarefas em segundo plano.
